@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Inglés</title>
+   <link rel="stylesheet" href="styles.css">
+<script>
+    function focusNextField(event, nextFieldId) {
+        if (event.key === "Enter") {
+            document.getElementById(nextFieldId).focus();
+        }
+    }
+</script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            
+            <img src="images.png" alt="TESOEM logo" class="imges.png">
+        </div>
+        <div class="right">
+            <div class="input-container">
+                <h2>¡Comienza tu Registro de Inglés!</h2>
+                <input id="name" type="text" placeholder="Nombre"onkeydown="focusNextField(event, 'matricula')">
+                <input id="matricula" type="text" placeholder="Usuario (matricula)"
+                    onkeydown="focusNextField(event, 'email')">
+                <input id="email" type="text" placeholder="Correo electrónico"
+                    onkeydown="focusNextField(event, 'password')">
+                <input id="password" type="password" placeholder="Contraseña"
+                    onkeydown="focusNextField(event, 'submit')">
+
+                <p class="note">
+                    (<span>contener una mayúscula, caracteres especiales (* / _), un número</span>)
+                </p>
+            </div>
+            <a href="iniciarsesion.html"class="boton">¡REGISTRATE!</a>
+        </div>
+        
+    </div>
+        <!-- Aquí pegas el script que te pasé -->
+        <script>
+            document.querySelector('.boton').addEventListener('click', function(event) {
+                event.preventDefault();
+        
+                const name = document.getElementById('name').value;
+                const matricula = document.getElementById('matricula').value;
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+        
+                if (!name || !matricula || !email || !password) {
+                    alert('Por favor llena todos los campos');
+                    return;
+                }
+        
+                const user = {
+                    name,
+                    matricula,
+                    email,
+                    password
+                };
+        
+                localStorage.setItem(matricula, JSON.stringify(user));
+        
+                alert('¡Registro exitoso!');
+                window.location.href = 'iniciarsesion.html';
+            });
+            </script>
+        
+        </body>
+        </html>
+        
+</body>
+
+</html>

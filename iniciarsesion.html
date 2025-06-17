@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicia Sesion - TESOEM</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="container">
+    <div class="images">
+        <img src="images.png" alt="TESOEM logo" class="imges.png">
+    </div>
+    <div class="right">
+    <div class="from-container">
+        <h2>¡Bienvenido de nuevo!</h2>
+        <form>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" required>
+
+            <label for="matricula">Matricula escolar del TESOEM</label>
+            <input type="text" id="matricula"required>
+
+            <label for="contraseña">Contraseña</label>
+            <input id="password" type="password" required>
+
+            <button type="submit">iniciar sesion</button>
+            <p><a href="forget.html">¿Olvidaste tu contraseña?</a></p>
+            <p>¿Todavia no tienes una cuenta <a href="proyecto.html">¡REGISTRATE!</a></p>
+            </form>
+           </div>
+           </div>
+         </div>
+         <!-- Agrega esto antes de cerrar </body> -->
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+        const matricula = document.getElementById('matricula').value;
+        const password = document.getElementById('password').value;
+    
+        const storedUser = localStorage.getItem(matricula);
+    
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            if (user.password === password) {
+                alert('Inicio de sesión exitoso. ¡Bienvenido, ' + user.name + '!');
+                // Aquí podrías redirigirlo a otra página
+            } else {
+                alert('Contraseña incorrecta.');
+            }
+        } else {
+            alert('Usuario no encontrado.');
+        }
+    });
+    </script>
+    
+    </body>
+</html> 
